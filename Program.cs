@@ -7,6 +7,16 @@ namespace LinqL
 {
     class Program
     {
+        static void Print<T>(string message, IEnumerable<T> collection)
+        {
+            Console.WriteLine(message);
+            foreach (T obj in collection)
+            {
+                Console.WriteLine(obj);
+            }
+            Console.WriteLine();
+        }
+    
         static void Main(string[] args)
         {
             Category c1 = new Category() { Id = 1, Name = "Tools", Tier = 2 };
@@ -27,6 +37,8 @@ namespace LinqL
                 new Product() { Id = 11, Name = "Level", Price = 70.0, Category = c1 }
             };
 
+            var r1 = products.Where(p => p.Category.Tier == 1 && p.Price < 900.0);
+            Print("TIER 1 AND PRICE < 900: ", r1);
 
 
         }
